@@ -10,7 +10,7 @@ export default function Products() {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/b1/products/all`);
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/products/all`);
       if (!response.ok) {
         throw new Error("Error fetching product data");
       }

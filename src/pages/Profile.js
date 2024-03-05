@@ -10,7 +10,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/b1/users/details`, {
+    fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -40,7 +40,7 @@ export default function Profile() {
     const formData = new FormData(e.target);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/b1/users/profile`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/profile`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -17,7 +17,7 @@ export default function Login() {
     console.log("Attempting to authenticate...");
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/b1/users/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function Login() {
     console.log("Retrieving user details...");
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/b1/users/details`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

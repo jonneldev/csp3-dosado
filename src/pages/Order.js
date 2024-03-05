@@ -11,7 +11,7 @@ export default function Orders() {
 
   const fetchOrders = () => {
     // Replace the URL with your actual API endpoint for fetching orders
-    fetch(`${process.env.REACT_APP_API_URL}/b1/orders/all`, {
+    fetch(`${process.env.REACT_APP_API_URL}/orders/all`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -26,7 +26,7 @@ export default function Orders() {
 
   const cancelOrder = (orderId) => {
     // Replace the URL with your actual API endpoint for canceling an order
-    fetch(`${process.env.REACT_APP_API_URL}/b1/orders/${orderId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/orders/${orderId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

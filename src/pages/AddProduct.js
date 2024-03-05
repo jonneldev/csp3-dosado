@@ -20,7 +20,7 @@ export default function AddProduct() {
 
     let token = localStorage.getItem("token");
 
-    fetch(`${process.env.REACT_APP_API_URL}/b1/products`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

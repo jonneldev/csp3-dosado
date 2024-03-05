@@ -34,7 +34,7 @@ function App() {
       }
 
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/b1/users/details`, {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

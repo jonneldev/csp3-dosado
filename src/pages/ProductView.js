@@ -27,7 +27,7 @@ export default function ProductView() {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/b1/products/${productId}`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`);
         if (response.ok) {
           const data = await response.json();
           console.log('Product details:', data);
@@ -51,7 +51,7 @@ export default function ProductView() {
 
   const addToCart = () => {
     if (product && product._id) {
-      fetch(`${process.env.REACT_APP_API_URL}/b1/cart`, {
+      fetch(`${process.env.REACT_APP_API_URL}/cart`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

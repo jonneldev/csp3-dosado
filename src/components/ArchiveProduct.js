@@ -31,7 +31,7 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
   };
 
   const activateToggle = (productId) => {
-    fetch(`${process.env.REACT_APP_API_URL}/b1/products/${productId}/activate`, {
+    fetch(`${process.env.REACT_APP_API_URL}/products/${productId}/activate`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

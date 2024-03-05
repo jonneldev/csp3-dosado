@@ -11,7 +11,7 @@ const Cart = () => {
   const fetchCartItems = useCallback(() => {
     setLoading(true); // Set loading to true when starting the fetch
 
-    fetch(`${process.env.REACT_APP_API_URL}/b1/cart/all`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/all`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -108,7 +108,7 @@ const Cart = () => {
   
     console.log("Selected Cart Items:", selectedCartItems);
   
-    fetch(`${process.env.REACT_APP_API_URL}/b1/orders/place`, {
+    fetch(`${process.env.REACT_APP_API_URL}/orders/place`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

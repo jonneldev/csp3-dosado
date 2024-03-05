@@ -18,7 +18,7 @@ const ResetPassword = () => {
     try {
       const token = localStorage.getItem("token"); // Replace with your actual JWT token
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/b1/users/reset-password`,
+        `${process.env.REACT_APP_API_URL}/users/reset-password`,
         {
           method: "PUT",
           headers: {

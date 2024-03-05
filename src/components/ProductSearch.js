@@ -8,7 +8,7 @@ const ProductSearch = () => {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/b1/products/productId`,
+        `${process.env.REACT_APP_API_URL}/products/productId`,
         {
           method: "POST",
           headers: {
