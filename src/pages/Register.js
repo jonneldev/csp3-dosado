@@ -1,5 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect, useContext } from "react";
+import { Form, Button, Card } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import UserContext from '../UserContext';
@@ -82,90 +82,97 @@ export default function Register() {
   }, [firstName, lastName, email, mobileNo, address, password, confirmPassword]);
 
   return (
-    (user.id !== null) ? 
-      <Navigate to='/' />
-     : 
-      <Form onSubmit={(e) => registerUser(e)}>
-        <h1 className="my-5 text-center">Register</h1>
-        <Form.Group>
-          <Form.Label>First Name:</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Enter First Name" 
-            required
-            value={firstName}
-            onChange={e => setFirstName(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Last Name:</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Enter Last Name" 
-            required
-            value={lastName}
-            onChange={e => setLastName(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Email:</Form.Label>
-          <Form.Control 
-            type="email" 
-            placeholder="Enter Email" 
-            required
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Mobile No:</Form.Label>
-          <Form.Control 
-            type="number" 
-            placeholder="Enter 11 Digit No."
-            required
-            value={mobileNo}
-            onChange={e => setMobileNo(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Address:</Form.Label>
-          <Form.Control 
-            type="text" 
-            placeholder="Enter Address"
-            required
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control 
-            type="password" 
-            placeholder="Enter Password" 
-            required
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>Confirm Password:</Form.Label>
-          <Form.Control 
-            type="password" 
-            placeholder="Confirm Password" 
-            required
-            value={confirmPassword}
-            onChange={e => setConfirmPassword(e.target.value)}
-          />
-        </Form.Group>
-        <Button
-          variant="primary"
-          type="submit"
-          id="submitBtn"
-          disabled={!isActive} // Disable the button if isActive is false
-        >
-          Submit
-        </Button>
-      </Form>
-    
+    (user.id !== null) ?
+    <Navigate to="/" />
+   : 
+      <Card className="p-4 mx-auto mt-5 shadow" style={{ maxWidth: "400px", borderRadius: "15px", backgroundColor: "#f8f9fa" }}>
+        <h1 className="my-4 text-center" style={{ color: "#343a40" }}>Register</h1>
+        <Form onSubmit={(e) => registerUser(e)}>
+          <Form.Group>
+            <Form.Label>First Name:</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Enter First Name" 
+              required
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Last Name:</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Enter Last Name" 
+              required
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Email:</Form.Label>
+            <Form.Control 
+              type="email" 
+              placeholder="Enter Email" 
+              required
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Mobile No:</Form.Label>
+            <Form.Control 
+              type="number" 
+              placeholder="Enter 11 Digit No."
+              required
+              value={mobileNo}
+              onChange={e => setMobileNo(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Address:</Form.Label>
+            <Form.Control 
+              type="text" 
+              placeholder="Enter Address"
+              required
+              value={address}
+              onChange={e => setAddress(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control 
+              type="password" 
+              placeholder="Enter Password" 
+              required
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Confirm Password:</Form.Label>
+            <Form.Control 
+              type="password" 
+              placeholder="Confirm Password" 
+              required
+              value={confirmPassword}
+              onChange={e => setConfirmPassword(e.target.value)}
+            />
+          </Form.Group>
+          <Button
+            variant="primary"
+            type="submit"
+            block
+            disabled={!isActive}
+            style={{
+              borderRadius: "10px",
+              marginTop: "15px",
+              backgroundColor: isActive ? "#007bff" : "#dc3545",
+              borderColor: isActive ? "#007bff" : "#dc3545",
+            }}
+          >
+            Submit
+          </Button>
+        </Form>
+      </Card>
   );
 }

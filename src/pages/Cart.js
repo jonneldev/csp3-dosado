@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Button, Container, Row, Col, Table } from "react-bootstrap";
+import { Button, Container, Row, Col, Table, Spinner } from "react-bootstrap";
 import Swal from "sweetalert2";
+import "../App.css"; // Import your custom CSS for the Cart component
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true);
 
   const fetchCartItems = useCallback(() => {
-    setLoading(true); // Set loading to true when starting the fetch
+    setLoading(true);
 
     fetch(`${process.env.REACT_APP_API_URL}/cart/all`, {
       method: "GET",
@@ -19,7 +20,7 @@ const Cart = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false); // Set loading to false when the fetch is complete
+        setLoading(false);
 
         if (!data.success || !data.cartItems || !Array.isArray(data.cartItems) || data.cartItems.length === 0) {
           throw new Error("Invalid response structure or empty cart items");
@@ -39,14 +40,14 @@ const Cart = () => {
         setTotalAmount(totalAmount);
       })
       .catch((error) => {
-        setLoading(false); // Set loading to false in case of an error
+        setLoading(false);
         console.error(`Error fetching cart items: ${error.message}`);
         // Display an error message to the user if needed
       });
   }, []);
 
   const removeFromCart = (productId) => {
-    fetch(`${process.env.REACT_APP_API_URL}/b1/cart/${productId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/cart/${productId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -54,6 +55,7 @@ const Cart = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         fetchCartItems();
         Swal.fire({
           title: "Success",
@@ -73,6 +75,29 @@ const Cart = () => {
       }
     });
   };
+
+  const updateQuantity = (productId, newQuantity) => {
+    // Update the quantity for the selected product
+    setCartItems((prevCartItems) => {
+      const updatedCartItems = prevCartItems.map((item) =>
+        item.productId === productId
+          ? {
+              ...item,
+              quantity: newQuantity,
+              totalPrice: newQuantity * item.productPrice, // Calculate the new total price
+            }
+          : item
+      );
+  
+      // Recalculate the total amount based on the updated quantities
+      const updatedTotalAmount = updatedCartItems.reduce((total, item) => total + item.totalPrice, 0);
+  
+      // Update the state with the new values
+      setTotalAmount(updatedTotalAmount);
+      return updatedCartItems;
+    });
+  };
+  
 
   const confirmOrder = () => {
     if (selectedProducts.length === 0) {
@@ -98,60 +123,71 @@ const Cart = () => {
   };
 
   const placeOrder = () => {
-    const selectedCartItems = selectedProducts.map((productId) => {
-      const cartItem = cartItems.find((item) => item.productId === productId);
-      return {
-        productId,
-        quantity: cartItem ? cartItem.quantity : 0,
-      };
-    });
-  
-    console.log("Selected Cart Items:", selectedCartItems);
-  
-    fetch(`${process.env.REACT_APP_API_URL}/orders/place`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        products: selectedCartItems,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          Swal.fire({
-            title: "Order Placed",
-            icon: "success",
-            text: "Your order has been placed successfully!",
-          });
-  
-          // Remove selected items from the cart after placing the order
-          const updatedCartItems = cartItems.filter(
-            (item) => !selectedProducts.includes(item.productId)
-          );
-          setCartItems(updatedCartItems);
-          setSelectedProducts([]); // Clear the selected products
-        } else {
-          console.error(`Error placing order: ${data.error}`);
-          Swal.fire({
-            title: "Error",
-            icon: "error",
-            text: `Failed to place the order. Error: ${data.error}`,
-          });
-        }
-      })
-      .catch((error) => {
-        console.error(`Error placing order: ${error.message}`);
-        Swal.fire({
-          title: "Error",
-          icon: "error",
-          text: "Failed to place the order. Please try again.",
-        });
+    const createOrderPayload = () => {
+      return selectedProducts.map((productId) => {
+        const cartItem = cartItems.find((item) => item.productId === productId);
+        return {
+          productId,
+          quantity: cartItem ? cartItem.quantity : 0,
+        };
       });
+    };
+
+    const handleSuccess = (updatedCartItems) => {
+      removeSelectedItemsFromCart(selectedProducts);
+
+      // Clear the selected products
+      setSelectedProducts([]);
+
+      // Optionally update the cart items in the UI with the response from the server
+      setCartItems(updatedCartItems);
+    };
+
+    const removeSelectedItemsFromCart = (selectedProducts) => {
+      // Iterate over the selected products and remove them from the cart
+      selectedProducts.forEach((productId) => {
+        removeFromCart(productId);
+      });
+    };
+
+    const handleError = (error) => {
+      console.error(`Error placing order: ${error.message}`);
+      Swal.fire({
+        title: "Error",
+        icon: "error",
+        text: `Failed to place the order. Error: ${error.message}`,
+      });
+    };
+
+    const sendOrderRequest = (orderPayload) => {
+      fetch(`${process.env.REACT_APP_API_URL}/orders/place`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          products: orderPayload,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            handleSuccess(data.cartItems);
+          } else {
+            handleError(new Error(data.error));
+          }
+        })
+        .catch((error) => {
+          handleError(error);
+        });
+    };
+
+    const selectedCartItems = createOrderPayload();
+    console.log("Selected Cart Items:", selectedCartItems);
+
+    sendOrderRequest(selectedCartItems);
   };
-  
 
   useEffect(() => {
     fetchCartItems();
@@ -161,13 +197,13 @@ const Cart = () => {
     <Container className="mt-5">
       <h1 className="mb-4">Shopping Cart</h1>
 
-      {loading ? (
-        <p>Loading cart items...</p>
-      ) : cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
+      {loading && <Spinner animation="border" role="status" />}
+      
+      {!loading && cartItems.length === 0 && <p>Your cart is empty.</p>}
+
+      {!loading && cartItems.length > 0 && (
         <>
-          <Table striped bordered hover>
+          <Table striped bordered hover responsive className="cart-table">
             <thead>
               <tr>
                 <th>Select</th>
@@ -181,7 +217,7 @@ const Cart = () => {
 
             <tbody>
               {cartItems.map((item) => (
-                <tr key={item.productId}>
+                <tr key={`cartItem_${item.productId}`}>
                   <td>
                     <input
                       type="checkbox"
@@ -191,7 +227,25 @@ const Cart = () => {
                   </td>
                   <td>{item.productName}</td>
                   <td>${item.productPrice}</td>
-                  <td>{item.quantity}</td>
+                  <td>
+                    <div className="quantity-control">
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        onClick={() => updateQuantity(item.productId, item.quantity - 1)}
+                      >
+                        -
+                      </Button>
+                      <span className="quantity">{item.quantity}</span>
+                      <Button
+                        variant="outline-secondary"
+                        size="sm"
+                        onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                      >
+                        +
+                      </Button>
+                    </div>
+                  </td>
                   <td>${item.totalPrice}</td>
                   <td>
                     <Button
@@ -208,9 +262,9 @@ const Cart = () => {
           </Table>
 
           <Row className="justify-content-end">
-            <Col md={4} className="text-right">
-              <h5>Total Price: ${totalAmount}</h5>
-              <Button variant="success" onClick={confirmOrder}>
+            <Col xs={12} md={4} className="text-right">
+              <h5 className="total-price">Total Price: ${totalAmount}</h5>
+              <Button variant="success" onClick={confirmOrder} className="place-order-btn">
                 Place Order
               </Button>
             </Col>

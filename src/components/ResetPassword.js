@@ -1,88 +1,81 @@
+// ResetPassword.js
 import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Form, Button, Card, Container } from "react-bootstrap";
+import Swal from 'sweetalert2';
 
 const ResetPassword = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setMessage("Passwords do not match");
-      return;
-    }
-
     try {
-      const token = localStorage.getItem("token"); // Replace with your actual JWT token
-      const response = await fetch(
-        `${process.env.REACT_APP_API_URL}/users/reset-password`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ newPassword: password }),
-        }
-      );
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users/reset-password`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          newPassword,
+        }),
+      });
 
-      if (response.ok) {
-        setMessage("");
-        setSuccess(true);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Display success alert
+        Swal.fire({
+          title: 'Success!',
+          icon: 'success',
+          text: 'Password reset successfully',
+        });
       } else {
-        const errorData = await response.json();
-        setMessage(errorData.message);
+        console.error("Password reset failed:", data.message);
+        // Display error alert
+        Swal.fire({
+          title: 'Error!',
+          icon: 'error',
+          text: data.message || 'Password reset failed',
+        });
       }
     } catch (error) {
-      setMessage("An error occurred. Please try again.");
-      console.error(error);
+      console.error("Error resetting password:", error);
+      // Display error alert
+      Swal.fire({
+        title: 'Error!',
+        icon: 'error',
+        text: 'Failed to reset password. Please try again.',
+      });
     }
   };
 
-  if (success) {
-    // Redirect to the login page or any other page after a successful password reset
-    return <Navigate to="/login" />;
-  }
-
   return (
-    <div className="container">
-      <h2>Reset Password</h2>
-      <form onSubmit={handleResetPassword}>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            New Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="confirmPassword" className="form-label">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-        {message && <div className="alert alert-danger">{message}</div>}
-        <button type="submit" className="btn btn-primary">
-          Reset Password
-        </button>
-      </form>
-    </div>
+    <Container className="reset-password-container">
+      <Card className="reset-password-card">
+        <Card.Body>
+          <h2 className="mb-4">Reset Password</h2>
+          <Form className="reset-password-form" onSubmit={handleResetPassword}>
+            <Form.Group controlId="formNewPassword" className="mb-3">
+              <Form.Label>New Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="newPassword"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button className="submit-btn" variant="primary" type="submit">
+              Reset Password
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 

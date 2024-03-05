@@ -1,13 +1,23 @@
+// Profile.js
 import React, { useContext, useEffect, useState } from "react";
-import { Row, Col, Spinner, Form, Button, Card } from "react-bootstrap";
-import UserContext from "../UserContext";
+import { Form, Button, Card, Container, Row, Col, Modal } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
+import Swal from 'sweetalert2';
+import UserContext from "../UserContext";
+import ResetPassword from "../components/ResetPassword"; // Import the ResetPassword component
+import "../App.css"; // Import your new CSS file
 
 export default function Profile() {
   const { user } = useContext(UserContext);
+  const [showResetPasswordModal, setShowResetPasswordModal] = useState(false);
 
-  const [details, setDetails] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [details, setDetails] = useState({
+    firstName: '',
+    lastName: '',
+    mobileNo: '',
+    address: '',
+    email: '',
+  });
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
@@ -15,12 +25,7 @@ export default function Profile() {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
-        }
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         if (data.success) {
           setDetails(data.data.user);
@@ -28,24 +33,25 @@ export default function Profile() {
       })
       .catch((error) => {
         console.error("Error fetching user details:", error);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   }, []);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/users/profile`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
+          'Content-Type': 'application/json',
         },
-        body: formData,
+        body: JSON.stringify({
+          firstName: e.target.firstName.value,
+          lastName: e.target.lastName.value,
+          mobileNo: e.target.mobileNo.value,
+          address: e.target.address.value,
+        }),
       });
 
       if (!response.ok) {
@@ -56,66 +62,96 @@ export default function Profile() {
 
       if (data.success) {
         setDetails(data.data.user);
+        // Display success alert
+        Swal.fire({
+          title: 'Success!',
+          icon: 'success',
+          text: 'Profile updated successfully',
+        });
       } else {
         console.error("Profile update failed:", data.message);
+        // Display error alert
+        Swal.fire({
+          title: 'Error!',
+          icon: 'error',
+          text: data.message || 'Profile update failed',
+        });
       }
     } catch (error) {
       console.error("Error updating profile:", error);
+      // Display error alert
+      Swal.fire({
+        title: 'Error!',
+        icon: 'error',
+        text: 'Failed to update profile. Please try again.',
+      });
     }
   };
 
-  if (loading) {
-    return (
-      <div className="text-center mt-5">
-        <Spinner animation="border" variant="primary" />
-      </div>
-    );
-  }
+  const handleShowResetPasswordModal = () => {
+    setShowResetPasswordModal(true);
+  };
+
+  const handleCloseResetPasswordModal = () => {
+    setShowResetPasswordModal(false);
+  };
 
   return user.id === null ? (
     <Navigate to="/products" />
   ) : (
-    <Row className="mt-4 justify-content-center">
-      <Col md={8}>
-        <Card>
-          <Card.Body className="text-dark bg-light">
-            <h1 className="text-center mb-4">Profile</h1>
-            <h4 className="text-center mb-4">{`${details.firstName} ${details.lastName}`}</h4>
-            <hr className="bg-dark" />
-            <h5 className="text-dark">Contacts</h5>
-            <ul className="list-unstyled text-dark">
-              <li>Email: {details.email}</li>
-              <li>Mobile No: {details.mobileNo}</li>
-            </ul>
-          </Card.Body>
-        </Card>
-        <Card className="mt-4">
-          <Card.Body>
-            <h2 className="mb-4">Update Profile</h2>
-            <Form onSubmit={handleUpdateProfile}>
-              <Form.Group controlId="formFirstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control type="text" name="firstName" defaultValue={details.firstName} />
-              </Form.Group>
-              <Form.Group controlId="formLastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control type="text" name="lastName" defaultValue={details.lastName} />
-              </Form.Group>
-              <Form.Group controlId="formMobileNo">
-                <Form.Label>Mobile No</Form.Label>
-                <Form.Control type="text" name="mobileNo" defaultValue={details.mobileNo} />
-              </Form.Group>
-              <Form.Group controlId="formAddress">
-                <Form.Label>Address</Form.Label>
-                <Form.Control type="text" name="address" defaultValue={details.address} />
-              </Form.Group>
-              <Button variant="primary" type="submit" className="mt-3">
-                Update Profile
-              </Button>
-            </Form>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+    <Container className="profile-container">
+      <Card className="profile-card">
+        <Card.Body>
+          <h1 className="profile-header mb-4">Profile</h1>
+          <h4 className="text-center mb-4">{`${details.firstName} ${details.lastName}`}</h4>
+          <hr className="bg-primary" />
+          <h5 className="text-dark">Contacts</h5>
+          <ul className="contacts-list">
+            <li>Email: {details.email}</li>
+            <li>Mobile No: {details.mobileNo}</li>
+          </ul>
+          <Button variant="info" onClick={handleShowResetPasswordModal}>
+            Change Password
+          </Button>
+        </Card.Body>
+      </Card>
+
+      <Card className="update-profile-card">
+        <Card.Body>
+          <h2 className="mb-4">Update Profile</h2>
+          <Form className="update-form" onSubmit={handleUpdateProfile}>
+            <Form.Group controlId="formFirstName" className="mb-3">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control type="text" name="firstName" defaultValue={details.firstName} />
+            </Form.Group>
+            <Form.Group controlId="formLastName" className="mb-3">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control type="text" name="lastName" defaultValue={details.lastName} />
+            </Form.Group>
+            <Form.Group controlId="formMobileNo" className="mb-3">
+              <Form.Label>Mobile No</Form.Label>
+              <Form.Control type="text" name="mobileNo" defaultValue={details.mobileNo} />
+            </Form.Group>
+            <Form.Group controlId="formAddress" className="mb-3">
+              <Form.Label>Address</Form.Label>
+              <Form.Control type="text" name="address" defaultValue={details.address} />
+            </Form.Group>
+            <Button className="submit-btn" variant="primary" type="submit">
+              Update Profile
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+
+      {/* Reset Password Modal */}
+      <Modal show={showResetPasswordModal} onHide={handleCloseResetPasswordModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Change Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ResetPassword />
+        </Modal.Body>
+      </Modal>
+    </Container>
   );
 }

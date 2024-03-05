@@ -1,10 +1,202 @@
+/* Reset Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
+/* Custom Styles */
 .cardHighlight {
   min-height: 100%;
+}
+
+/* Navbar */
+.brand-logo {
+  margin-right: auto !important;
+}
+
+/* Modern Color Theme */
+body {
+  background-color: #f8f9fa;
+  color: #495057;
+}
+
+.navbar {
+  background-color: #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.nav-link {
+  color: #ffffff;
+  margin-right: 15px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #0056b3; /* Lighter shade of the navbar color */
+}
+
+.navbar-toggler-icon {
+  border-color: #ffffff;
+}
+
+.navbar-toggler {
+  border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    background-color: #0056b3; /* Darker shade of the navbar color */
+    border-top: 1px solid #ffffff;
+  }
+}
+
+.text-price {
+  color: #ff4500; /* Example color (adjust as needed) */
+}
+
+.product-search-container {
+  position: relative;
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.search-results h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-results ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.search-results button {
+  margin-bottom: 1rem;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.profile-card,
+.update-profile-card {
+  width: 100%;
+  max-width: 600px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.profile-card {
+  margin-bottom: 2rem;
+}
+
+.update-profile-card {
+  margin-top: 2rem;
+}
+
+.profile-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contacts-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.update-form {
+  margin-top: 2rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+/* Cart.css */
+
+.cart-table {
+  margin-top: 20px;
+}
+
+.total-price {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.place-order-btn {
+  margin-top: 10px;
+}
+
+/* Add these styles to fix the position of the "-" and "+" buttons in the quantity control */
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-control button {
+  width: 30px; /* Fixed width for the buttons */
+  margin: 0; /* Remove the default margin to align buttons in a row */
+}
+
+.quantity {
+  margin: 0 5px; /* Adjust the margin for better spacing */
+}
+
+.quantity-control button:first-child {
+  margin-right: auto; /* Set right margin to auto to push the "-" button to the left */
+}
+
+.quantity-control button:last-child {
+  margin-left: 5px; /* Adjust the margin between the "-" and "+" buttons */
+}
+
+/* Style the total price section for better visibility */
+.total-price {
+  font-size: 18px; /* Adjust the font size as needed */
+  margin-bottom: 10px; /* Add margin to separate from the quantity control */
 }

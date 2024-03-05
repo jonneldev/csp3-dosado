@@ -12,7 +12,6 @@ import Profile from './pages/Profile';
 import NotFound from './pages/Error';
 import Products from './pages/Products';
 import ProductView from './pages/ProductView';
-import AddProduct from './pages/AddProduct';
 import Order from './pages/Order';
 import Cart from './pages/Cart';
 
@@ -81,7 +80,6 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/products" element={<Products />} />
             <Route path="/products/:productId" element={<ProductView />} />
-            <Route path="/add-product" element={<AddProduct />} />
             <Route path="/orders" element={<Order />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="*" element={<NotFound />} />

@@ -1,21 +1,28 @@
+import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export default function ProductCard({ productProp }) {
-  // Deconstruct the product properties into their own variables
+  // Destructure the product properties into their own variables
   const { _id, name, description, price, stock } = productProp;
 
   return (
-    <Card>
+    <Card className="shadow">
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
-        <Card.Subtitle>Description:</Card.Subtitle>
-        <Card.Text>{description}</Card.Text>
-        <Card.Subtitle>Price:</Card.Subtitle>
-        <Card.Text>Php {price}</Card.Text>
-        <Card.Subtitle>Stock:</Card.Subtitle>
-        <Card.Text>{stock}</Card.Text>
+        <Card.Title className="mb-3">{name}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Description:</Card.Subtitle>
+        <Card.Text className="mb-3">{description}</Card.Text>
+        <Card.Subtitle className="mb-2 text-muted">Price:</Card.Subtitle>
+        <Card.Text className="mb-3">
+          <span className="text-primary">$ {price.toFixed(2)}</span>
+        </Card.Text>
+        <Card.Subtitle className="mb-2 text-muted">Stock:</Card.Subtitle>
+        {stock > 0 ? (
+          <Card.Text className="mb-3 text-success">In Stock: {stock}</Card.Text>
+        ) : (
+          <Card.Text className="text-danger mb-3">Out of Stock</Card.Text>
+        )}
         <Link className="btn btn-primary" to={`/products/${_id}`}>
           Details
         </Link>
@@ -24,15 +31,12 @@ export default function ProductCard({ productProp }) {
   );
 }
 
-// Check if the ProductCard component is getting the correct prop types
-// PropTypes are used for validating information passed to a component.
+// PropTypes validation
 ProductCard.propTypes = {
-  // The 'shape' method is used to check if a prop object conforms to a specific "shape"
   productProp: PropTypes.shape({
-    // Define the properties and their expected types
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     stock: PropTypes.number.isRequired,
-  }),
+  }).isRequired,
 };

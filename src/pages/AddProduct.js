@@ -13,6 +13,7 @@ export default function AddProduct() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [stock, setStock] = useState(""); // Added stock state
 
   function createProduct(e) {
     // Prevent submit event's default behavior
@@ -30,6 +31,7 @@ export default function AddProduct() {
         name,
         description,
         price,
+        stock, // Include stock in the request body
       }),
     })
       .then((res) => res.json())
@@ -52,6 +54,7 @@ export default function AddProduct() {
     setName("");
     setDescription("");
     setPrice("");
+    setStock("");
   }
 
   return user.isAdmin === true ? (
@@ -92,6 +95,18 @@ export default function AddProduct() {
             value={price}
             onChange={(e) => {
               setPrice(e.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Stock:</Form.Label>
+          <Form.Control
+            type="number"
+            placeholder="Enter Stock"
+            required
+            value={stock}
+            onChange={(e) => {
+              setStock(e.target.value);
             }}
           />
         </Form.Group>

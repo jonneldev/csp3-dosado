@@ -1,48 +1,31 @@
 import React, { useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
+import { Form, Button, Modal } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
-export default function EditProduct({ product, fetchData }) {
-
-  const [productId, setProductId] = useState('');
+export default function AddProduct({ fetchData }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [stock, setStock] = useState('');
-  const [showEdit, setShowEdit] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
-  const openEdit = (productId) => {
-    fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`)
-      .then(res => res.json())
-      .then(data => {
-        setProductId(data.product._id);
-        setName(data.product.name);
-        setDescription(data.product.description);
-        setPrice(data.product.price);
-        setStock(data.product.stock);
-        setShowEdit(true);
-      })
-      .catch(error => {
-        console.error('Error fetching product details:', error);
-        setShowEdit(false);
-      });
+  const openAdd = () => {
+    setShowAdd(true);
   }
-  
 
-  const closeEdit = () => {
-    setShowEdit(false);
-    setProductId('');
+  const closeAdd = () => {
+    setShowAdd(false);
     setName('');
     setDescription('');
     setPrice('');
     setStock('');
   }
 
-  const editProduct = (e) => {
+  const addProduct = (e) => {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_API_URL}/products/${productId}`, {
-      method: 'PUT',
+    fetch(`${process.env.REACT_APP_API_URL}/products`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -60,9 +43,9 @@ export default function EditProduct({ product, fetchData }) {
           Swal.fire({
             title: 'Success!',
             icon: 'success',
-            text: 'Product Successfully Updated'
+            text: 'Product Successfully Added'
           });
-          closeEdit();
+          closeAdd();
           fetchData();
         } else {
           Swal.fire({
@@ -70,24 +53,26 @@ export default function EditProduct({ product, fetchData }) {
             icon: 'error',
             text: data.error.message || 'Please try again'
           });
-          closeEdit();
+          closeAdd();
         }
       })
       .catch(error => {
-        console.error('Error updating product:', error);
-        closeEdit();
+        console.error('Error adding product:', error);
+        closeAdd();
       });
   }
 
   return (
     <>
-      <Button variant="primary" size="sm" onClick={() => openEdit(product)}> Edit </Button>
+      <Button variant="success" size="sm" onClick={openAdd}>
+        Add Product
+      </Button>
 
-      {/* Edit Modal */}
-      <Modal show={showEdit} onHide={closeEdit}>
-        <Form onSubmit={editProduct}>
+      {/* Add Modal */}
+      <Modal show={showAdd} onHide={closeAdd}>
+        <Form onSubmit={addProduct}>
           <Modal.Header closeButton>
-            <Modal.Title>Edit Product</Modal.Title>
+            <Modal.Title>Add Product</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form.Group>
@@ -128,7 +113,7 @@ export default function EditProduct({ product, fetchData }) {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={closeEdit}>Close</Button>
+            <Button variant="secondary" onClick={closeAdd}>Close</Button>
             <Button variant="success" type="submit">Submit</Button>
           </Modal.Footer>
         </Form>

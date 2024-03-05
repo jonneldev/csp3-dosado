@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Table, Button, Badge } from "react-bootstrap";
 import Swal from "sweetalert2";
+import "../App.css"; // Import your custom CSS for the Orders component
 
 export default function Orders() {
   const [orders, setOrders] = useState([]);
@@ -70,12 +71,12 @@ export default function Orders() {
 
   return (
     <Container className="mt-5">
-      <h1 className="mb-4">Orders</h1>
+      <h1 className="mb-4 text-center">Orders</h1>
 
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p className="text-center">No orders found.</p>
       ) : (
-        <Table striped bordered hover responsive>
+        <Table striped bordered hover responsive className="orders-table">
           <thead>
             <tr>
               <th>Product Name</th>
@@ -93,9 +94,9 @@ export default function Orders() {
                 {mergeProducts(order.products).map((product, index) => (
                   <tr key={`${order._id}-${index}`}>
                     <td>{product.productName}</td>
-                    <td>${product.productPrice.toFixed(2)}</td>
+                    <td>${product.productPrice !== undefined ? product.productPrice.toFixed(2) : 'N/A'}</td>
                     <td>{product.quantity}</td>
-                    <td>${product.totalPrice.toFixed(2)}</td>
+                    <td>${product.totalPrice !== undefined ? product.totalPrice.toFixed(2) : 'N/A'}</td>
                     {index === 0 && (
                       <>
                         <td rowSpan={mergeProducts(order.products).length}>

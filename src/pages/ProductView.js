@@ -1,4 +1,3 @@
-// Import necessary modules and components
 import React, { useEffect, useState, useContext } from "react";
 import { Container, Card, Button, Row, Col } from "react-bootstrap";
 import { useParams, useNavigate, Link } from "react-router-dom";
@@ -103,19 +102,25 @@ export default function ProductView() {
 
   return (
     <Container className="mt-5">
-      <Row>
-        <Col lg={{ span: 6, offset: 3 }}>
-          <Card>
+      <Row className="justify-content-center">
+        <Col lg={6}>
+          <Card className="shadow">
             <Card.Body className="text-center">
               {product._id ? (
                 <>
-                  <Card.Title>{product.name}</Card.Title>
-                  <Card.Subtitle>Description:</Card.Subtitle>
-                  <Card.Text>{product.description}</Card.Text>
-                  <Card.Subtitle>Price:</Card.Subtitle>
-                  <Card.Text>PhP {product.price}</Card.Text>
-                  <Card.Subtitle>Stock:</Card.Subtitle>
-                  {product.stock > 0 ? <Card.Text>{product.stock}</Card.Text> : <Card.Text>Out of Stock</Card.Text>}
+                  <Card.Title className="mb-3">{product.name}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">Description:</Card.Subtitle>
+                  <Card.Text className="mb-3">{product.description}</Card.Text>
+                  <Card.Subtitle className="mb-2 text-muted">Price:</Card.Subtitle>
+                  <Card.Text className="mb-3">
+                    <span className="text-primary">$ {product.price.toFixed(2)}</span>
+                  </Card.Text>
+                  <Card.Subtitle className="mb-2 text-muted">Stock:</Card.Subtitle>
+                  {product.stock > 0 ? (
+                    <Card.Text className="mb-3 text-success">In Stock: {product.stock}</Card.Text>
+                  ) : (
+                    <Card.Text className="text-danger mb-3">Out of Stock</Card.Text>
+                  )}
                   {user.id !== null ? (
                     <Button variant="primary" block onClick={addToCart} disabled={product.stock <= 0}>
                       Add to Cart

@@ -6,7 +6,6 @@ import UserView from "../components/UserView";
 export default function Products() {
   const { user } = useContext(UserContext);
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -18,28 +17,19 @@ export default function Products() {
       setProducts(data.products);
     } catch (error) {
       console.error("Error fetching product data:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
-
     fetchData();
   }, [user]);
 
   return (
     <>
-      {loading ? (
-        <p>Loading...</p>
+      {user.isAdmin ? (
+        <AdminView productsData={products} fetchData={fetchData} />
       ) : (
-        <>
-          {user.isAdmin ? (
-            <AdminView productsData={products} fetchData={fetchData} />
-          ) : (
-            <UserView productsData={products} />
-          )}
-        </>
+        <UserView productsData={products} />
       )}
     </>
   );

@@ -1,0 +1,437 @@
+[
+  {
+    "name": "iPhone 13 Pro",
+    "description": "The latest flagship smartphone from Apple with a stunning Super Retina XDR display, A15 Bionic chip, and advanced camera system.",
+    "price": 1099.99,
+    "stock": 50,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T12:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Samsung Galaxy Z Fold 3",
+    "description": "A revolutionary foldable smartphone from Samsung, combining a large tablet-sized display and a compact phone form factor.",
+    "price": 1799.99,
+    "stock": 30,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T12:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "PlayStation 5",
+    "description": "The latest gaming console from Sony, offering high-performance gaming, 4K graphics, and an immersive gaming experience.",
+    "price": 499.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T13:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "MacBook Pro 16-inch",
+    "description": "Apple's powerful and portable laptop, featuring a 16-inch Retina display, M1 Pro or M1 Max chip, and enhanced audio and video capabilities.",
+    "price": 2399.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T13:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Tesla Model 3",
+    "description": "An electric sedan from Tesla, known for its impressive range, Autopilot feature, and sleek design.",
+    "price": 49999.99,
+    "stock": 10,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T14:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Amazon Echo Dot",
+    "description": "A compact and smart speaker from Amazon with built-in Alexa, perfect for voice-controlled smart home devices.",
+    "price": 49.99,
+    "stock": 40,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T14:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Dyson V11 Absolute",
+    "description": "A high-performance cordless vacuum cleaner from Dyson with powerful suction, intelligent cleaning modes, and a sleek design.",
+    "price": 699.99,
+    "stock": 25,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T15:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Nike Air Max 90",
+    "description": "Classic sneakers from Nike, known for their iconic design, comfortable Air Max cushioning, and timeless style.",
+    "price": 129.99,
+    "stock": 60,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T15:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Canon EOS R5",
+    "description": "A flagship mirrorless camera from Canon, featuring a high-resolution sensor, 8K video recording, and advanced autofocus capabilities.",
+    "price": 3499.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T16:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Nintendo Switch",
+    "description": "A versatile gaming console from Nintendo, offering both handheld and TV modes, with a vast library of popular games.",
+    "price": 299.99,
+    "stock": 30,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T16:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Bose QuietComfort 35 II",
+    "description": "Premium wireless headphones from Bose, known for their industry-leading noise cancellation, comfort, and impressive sound quality.",
+    "price": 349.99,
+    "stock": 22,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T17:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Fitbit Charge 5",
+    "description": "An advanced fitness tracker from Fitbit, offering health monitoring, built-in GPS, and a vibrant AMOLED display.",
+    "price": 179.99,
+    "stock": 35,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T17:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Sony WH-1000XM4",
+    "description": "Top-of-the-line wireless noise-canceling headphones from Sony, renowned for their exceptional sound quality and comfort.",
+    "price": 299.99,
+    "stock": 25,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T18:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "GoPro HERO10 Black",
+    "description": "The latest action camera from GoPro, featuring 5.3K video recording, advanced stabilization, and a durable waterproof design.",
+    "price": 499.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T18:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Microsoft Surface Laptop 4",
+    "description": "Sleek and powerful, the Surface Laptop 4 from Microsoft offers a high-resolution PixelSense touchscreen, Intel Core processor options, and a premium aluminum design.",
+    "price": 1299.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T19:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Adidas Ultraboost 21",
+    "description": "Experience maximum comfort and performance with the Adidas Ultraboost 21, featuring Boost cushioning technology and a stylish knit upper.",
+    "price": 179.99,
+    "stock": 30,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T19:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "LG OLED C1 Series",
+    "description": "Transform your entertainment experience with the LG OLED C1 Series TV, known for its stunning 4K OLED display, Dolby Vision IQ, and AI-powered processing.",
+    "price": 2499.99,
+    "stock": 10,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T20:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Garmin Fenix 7",
+    "description": "Conquer your fitness goals with the Garmin Fenix 7, a premium multisport GPS smartwatch with advanced health and performance tracking features.",
+    "price": 799.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T20:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Canon EOS-1D X Mark III",
+    "description": "A professional-grade DSLR camera from Canon, designed for high-speed, high-resolution photography and 4K video recording.",
+    "price": 6499.99,
+    "stock": 12,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T21:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Samsung 49-inch QLED TV",
+    "description": "Immerse yourself in stunning visuals with this 49-inch QLED TV from Samsung, featuring Quantum Dot technology and impressive 4K resolution.",
+    "price": 899.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T21:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Apple Watch Series 7",
+    "description": "Stay connected and track your fitness with the Apple Watch Series 7, boasting a larger and always-on Retina display, advanced health features, and a sleek design.",
+    "price": 399.99,
+    "stock": 25,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T22:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Dell XPS 13",
+    "description": "Experience powerful performance in a compact design with the Dell XPS 13 laptop, featuring an InfinityEdge display and the latest Intel Core processors.",
+    "price": 1299.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T22:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Bose SoundLink Revolve+",
+    "description": "Elevate your audio experience with the Bose SoundLink Revolve+, a portable Bluetooth speaker with 360-degree sound, water resistance, and long battery life.",
+    "price": 299.99,
+    "stock": 30,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T23:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Sony PlayStation VR",
+    "description": "Immerse yourself in virtual reality gaming with the Sony PlayStation VR headset, offering a captivating experience with compatible PlayStation games.",
+    "price": 299.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-03T23:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Samsung Galaxy Watch 4",
+    "description": "Achieve your fitness goals and stay connected with the Samsung Galaxy Watch 4, featuring advanced health tracking, a vibrant AMOLED display, and long battery life.",
+    "price": 249.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T00:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Canon PIXMA Pro-100",
+    "description": "Print stunning professional-quality photos with the Canon PIXMA Pro-100, a wireless inkjet printer designed for photographers and creative professionals.",
+    "price": 399.99,
+    "stock": 12,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T00:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Garmin Venu 2",
+    "description": "Enhance your fitness journey with the Garmin Venu 2, a GPS smartwatch with a vibrant AMOLED display, health monitoring features, and a wide range of sports apps.",
+    "price": 349.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T01:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Logitech MX Master 3",
+    "description": "Boost your productivity with the Logitech MX Master 3, an advanced wireless mouse with customizable buttons, ergonomic design, and precision tracking.",
+    "price": 99.99,
+    "stock": 25,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T01:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "KitchenAid Stand Mixer",
+    "description": "Elevate your cooking and baking experience with the KitchenAid Stand Mixer, featuring a powerful motor, multiple attachments, and timeless design.",
+    "price": 349.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T02:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Sony A7R IV",
+    "description": "Capture breathtaking photos with the Sony A7R IV, a full-frame mirrorless camera boasting a high-resolution sensor, fast autofocus, and 4K video recording.",
+    "price": 2999.99,
+    "stock": 10,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T02:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "LG Gram 17",
+    "description": "Experience portability without compromise with the LG Gram 17 laptop, featuring a large 17-inch display, lightweight design, and long-lasting battery life.",
+    "price": 1499.99,
+    "stock": 12,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T03:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Nintendo Switch OLED Model",
+    "description": "Enjoy an enhanced gaming experience with the Nintendo Switch OLED Model, featuring a vibrant 7-inch OLED display and versatile gaming modes.",
+    "price": 349.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T03:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Bose Frames Tempo",
+    "description": "Combine sunglasses with premium audio with the Bose Frames Tempo, featuring open-ear audio, polarized lenses, and a durable sport design.",
+    "price": 249.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T04:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Samsung Galaxy Tab S7+",
+    "description": "Experience productivity and entertainment on the go with the Samsung Galaxy Tab S7+, featuring a stunning 12.4-inch Super AMOLED display and S Pen support.",
+    "price": 849.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T04:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "DJI Mavic Air 2",
+    "description": "Elevate your aerial photography with the DJI Mavic Air 2 drone, featuring a 48MP camera, 4K video recording, and intelligent shooting modes.",
+    "price": 799.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T05:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "JBL Flip 5",
+    "description": "Take your music anywhere with the JBL Flip 5, a portable waterproof Bluetooth speaker with powerful sound and up to 12 hours of playtime.",
+    "price": 129.99,
+    "stock": 25,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T05:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Acer Predator Helios 300",
+    "description": "Unleash gaming power with the Acer Predator Helios 300 laptop, featuring a high-refresh-rate display, powerful graphics, and advanced cooling technology.",
+    "price": 1299.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T06:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Cuisinart 14-Cup Food Processor",
+    "description": "Simplify your kitchen tasks with the Cuisinart 14-Cup Food Processor, featuring a powerful motor, multiple blades, and a large capacity for food preparation.",
+    "price": 199.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T06:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "LG CX 55-inch OLED TV",
+    "description": "Transform your home entertainment with the LG CX 55-inch OLED TV, known for its perfect black levels, Dolby Vision support, and smart TV capabilities.",
+    "price": 1799.99,
+    "stock": 10,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T07:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Garmin Forerunner 945",
+    "description": "Achieve your fitness goals with the Garmin Forerunner 945, a GPS smartwatch with advanced performance metrics, music streaming, and heart rate monitoring.",
+    "price": 599.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T07:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Razer BlackWidow Elite",
+    "description": "Enhance your gaming setup with the Razer BlackWidow Elite, a mechanical gaming keyboard with customizable RGB lighting, dedicated media controls, and tactile switches.",
+    "price": 169.99,
+    "stock": 22,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T08:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Samsung Odyssey G7 Gaming Monitor",
+    "description": "Immerse yourself in gaming with the Samsung Odyssey G7, a 32-inch curved gaming monitor with QLED technology, 240Hz refresh rate, and 1ms response time.",
+    "price": 699.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T08:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Anker PowerCore+ 26800 PD",
+    "description": "Stay charged on the go with the Anker PowerCore+ 26800 PD, a high-capacity portable charger with Power Delivery technology for fast charging of devices.",
+    "price": 129.99,
+    "stock": 30,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T09:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Philips Sonicare DiamondClean",
+    "description": "Achieve a brighter smile with the Philips Sonicare DiamondClean electric toothbrush, featuring advanced sonic technology and multiple brushing modes.",
+    "price": 149.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T09:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "NVIDIA GeForce RTX 3080",
+    "description": "Upgrade your gaming rig with the NVIDIA GeForce RTX 3080 graphics card, delivering real-time ray tracing, AI-powered graphics, and incredible gaming performance.",
+    "price": 699.99,
+    "stock": 12,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T10:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Fujifilm X-T4",
+    "description": "Unleash your creativity with the Fujifilm X-T4, a mirrorless camera featuring in-body image stabilization, 4K video recording, and a versatile range of lenses.",
+    "price": 1699.99,
+    "stock": 15,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T10:30:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Amazon Echo Show 10",
+    "description": "Experience a smarter home with the Amazon Echo Show 10, a smart display with a rotating screen, built-in Alexa, and video calling capabilities.",
+    "price": 249.99,
+    "stock": 20,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T11:00:00.000Z" },
+    "__v": 0
+  },
+  {
+    "name": "Lenovo Legion Y740 Gaming Laptop",
+    "description": "Dominate the gaming battlefield with the Lenovo Legion Y740, a high-performance gaming laptop with NVIDIA RTX graphics, Dolby Vision, and a customizable RGB keyboard.",
+    "price": 1699.99,
+    "stock": 18,
+    "isActive": true,
+    "createdOn": { "$date": "2023-01-04T11:30:00.000Z" },
+    "__v": 0
+  }
+]
+  
+  
+

@@ -1,16 +1,15 @@
 // Login.js
 import React, { useState, useEffect, useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 import Swal from "sweetalert2";
 import UserContext from "../UserContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function Login() {
   const { user, setUser } = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
-  const navigate = useNavigate();
 
   async function authenticate(e) {
     e.preventDefault();
@@ -100,33 +99,48 @@ export default function Login() {
   return user.id !== null ? (
     <Navigate to="/products" />
   ) : (
-    <Form onSubmit={(e) => authenticate(e)}>
-      <h1 className="my-5 text-center">Login</h1>
-      <Form.Group controlId="email">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </Form.Group>
+    <Card className="p-4 mx-auto mt-5 shadow" style={{ maxWidth: "400px", borderRadius: "15px", backgroundColor: "#f8f9fa" }}>
+      <h1 className="my-4 text-center" style={{ color: "#343a40" }}>
+        Login
+      </h1>
+      <Form onSubmit={(e) => authenticate(e)}>
+        <Form.Group controlId="email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-      <Form.Group controlId="password">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-      <Button variant={isActive ? "primary" : "danger"} type="submit" id="submitBtn" disabled={!isActive}>
-        Submit
-      </Button>
-    </Form>
+        <Button
+          variant={isActive ? "primary" : "danger"}
+          type="submit"
+          block
+          disabled={!isActive}
+          style={{
+            borderRadius: "10px",
+            marginTop: "15px",
+            backgroundColor: isActive ? "#007bff" : "#dc3545",
+            borderColor: isActive ? "#007bff" : "#dc3545",
+          }}
+        >
+          Submit
+        </Button>
+      </Form>
+    </Card>
   );
 }
